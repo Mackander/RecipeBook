@@ -1,9 +1,9 @@
-<app-header></app-header>
+<app-header (selectedItem)="onSelectedItem($event)"></app-header>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <app-recipes></app-recipes>
-      <app-shopping-list></app-shopping-list>
+      <app-recipes  [hidden]="headerSelectedItem != 'recipes'"></app-recipes>
+      <app-shopping-list [hidden]="headerSelectedItem != 'shopping-list'" ></app-shopping-list>
     </div>
   </div>
 </div>

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  headerSelectedItem: string = 'recipes'
+  
+  onSelectedItem(selectedItem: string) {
+    this.headerSelectedItem = selectedItem
+  }
 }
