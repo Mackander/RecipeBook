@@ -17,4 +17,8 @@ export class ShoppingListSerivice {
         this.ingredients.push(ingredient);
         this.ingredientAdded.emit(this.ingredients);
     }
+    addIngredients(ingredients: Ingredient[]) {
+        this.ingredients.push(...ingredients); // using spread operator so that push can handle each item of array
+        this.ingredientAdded.emit(this.ingredients);
+    }
 }

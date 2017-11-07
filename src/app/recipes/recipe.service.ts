@@ -1,13 +1,20 @@
 import { EventEmitter } from '@angular/core';
 import { Recipe } from './recipe.model';
+import { Ingredient } from '../shared/ingredient.model';
 
 export class RecipeService {
 
     recipeSelected = new EventEmitter<Recipe>();
 
     private recipes: Recipe[] = [
-        new Recipe('A test recipe', 'This is simply a test', 'assets/images/Recipe1.jpg'),
-        new Recipe('mediterian recipe', 'This is a vegitarian recipe', 'assets/images/Recipe2.jpg')
+        new Recipe('A test recipe', 'This is simply a test', 'assets/images/Recipe1.jpg'
+            , [
+                new Ingredient('Apples', 2), new Ingredient('pineapple', 1)
+            ]),
+        new Recipe('mediterian recipe', 'This is a vegitarian recipe', 'assets/images/Recipe2.jpg',
+            [
+                new Ingredient('Cheese', 2), new Ingredient('tomatoes', 4)
+            ])
     ];
 
     getRecipes() {
