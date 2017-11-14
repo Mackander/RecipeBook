@@ -10,8 +10,4 @@ import { ShoppingListSerivice } from './shopping-list/shopping-list.service';
 export class AppComponent {
   title = 'app';
   headerSelectedItem = 'recipes';
-
-  onSelectedItem(selectedItem: string) {
-    this.headerSelectedItem = selectedItem;
-  }
 }
