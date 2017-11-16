@@ -1,8 +1,9 @@
 import { EventEmitter } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { Subject } from 'rxjs/Subject';
 
 export class ShoppingListSerivice {
-    ingredientAdded = new EventEmitter<Ingredient[]>();
+    ingredientAdded = new Subject<Ingredient[]>();
 
     ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
@@ -15,10 +16,10 @@ export class ShoppingListSerivice {
 
     addIngredient(ingredient: Ingredient) {
         this.ingredients.push(ingredient);
-        this.ingredientAdded.emit(this.ingredients);
+        this.ingredientAdded.next(this.ingredients);
     }
     addIngredients(ingredients: Ingredient[]) {
         this.ingredients.push(...ingredients); // using spread operator so that push can handle each item of array
-        this.ingredientAdded.emit(this.ingredients);
+        this.ingredientAdded.next(this.ingredients);
     }
 }
