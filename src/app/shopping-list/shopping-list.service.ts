@@ -4,6 +4,7 @@ import { Subject } from 'rxjs/Subject';
 
 export class ShoppingListSerivice {
     ingredientAdded = new Subject<Ingredient[]>();
+    startedEditing = new Subject<number>();
 
     ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
@@ -22,4 +23,5 @@ export class ShoppingListSerivice {
         this.ingredients.push(...ingredients); // using spread operator so that push can handle each item of array
         this.ingredientAdded.next(this.ingredients);
     }
+
 }
