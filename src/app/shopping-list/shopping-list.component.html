@@ -3,13 +3,16 @@
     <app-shopping-edit></app-shopping-edit>
     <hr>
     <ul class="list-group">
-      <a style="cursor: pointer"
-      class="list-group-item"
-      *ngFor="let ingredient of ingredients; let i = index"
-      (click)="onEditItem(i)"
-      >
-    {{ingredient.name}} ({{ingredient.amount}})
-    </a>
+      <div *ngFor="let ingredient of ingredients; let i = index">
+        <a style="cursor: pointer" class="list-group-item flex-column align-items-start" (click)="onEditItem(i)">
+          {{ingredient.name}} ({{ingredient.amount}})
+          <button type="button" class="close" aria-label="Close" (click)="onDeleteItem(i)">
+            <span class="oi oi-circle-x"></span>
+          </button>
+        </a>
+      </div>
     </ul>
+
   </div>
+
 </div>
