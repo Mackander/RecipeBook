@@ -13,6 +13,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   constructor(private shoppingListSerivice: ShoppingListSerivice) { }
   editIngredient: Ingredient;
+  editMode = false;
+  editIngredientIndex: number;
   editIngredientSubscription: Subscription;
 
   // @ViewChild('nameInput') name: ElementRef;
@@ -28,9 +30,13 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
     this.editIngredientSubscription = this.shoppingListSerivice.startedEditing.subscribe(
       (index: number) => {
+        this.editIngredientIndex = index;
+        this.editMode = true;
         this.editIngredient = this.shoppingListSerivice.getIngredients()[index];
-        this.ingredientForm.get('name').setValue(this.editIngredient.name);
-        this.ingredientForm.get('amount').setValue(this.editIngredient.amount);
+        this.ingredientForm.setValue({
+          'name': this.editIngredient.name,
+          'amount': this.editIngredient.amount
+        });
       });
   }
 
@@ -38,17 +44,24 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   get amount() { return this.ingredientForm.get('amount'); }
 
-  onAddIngredient() {
-    this.shoppingListSerivice.addIngredient(
-      // new Ingredient(this.name.nativeElement.value, this.amount.nativeElement.value)
-      new Ingredient(this.ingredientForm.get('name').value,
-        this.ingredientForm.get('amount').value)
-    );
-    this.ingredientForm.reset();
+  onSubmit() {
+    const ingredient: Ingredient = new Ingredient(this.ingredientForm.get('name').value, this.ingredientForm.get('amount').value);
+
+    if (this.editMode) {
+      this.shoppingListSerivice.updateIngredient(ingredient, this.editIngredientIndex);
+    } else {
+      this.shoppingListSerivice.addIngredient(ingredient);
+    }
+    this.clearForm();
   }
 
   ngOnDestroy() {
     this.editIngredientSubscription.unsubscribe();
+  }
+
+  clearForm() {
+    this.editMode = false;
+    this.ingredientForm.reset();
   }
 
 }
