@@ -1,15 +1,18 @@
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
 
 export class RecipeService {
 
+    recipeAdded = new Subject<Recipe[]>();
+
     private recipes: Recipe[] = [
-        new Recipe(1, 'A test recipe', 'This is simply a test', 'assets/images/Recipe1.jpg'
+        new Recipe(0, 'A test recipe', 'This is simply a test', 'assets/images/Recipe1.jpg'
             , [
                 new Ingredient('Apples', 2), new Ingredient('pineapple', 1)
             ]),
-        new Recipe(2, 'mediterian recipe', 'This is a vegitarian recipe', 'assets/images/Recipe2.jpg',
+        new Recipe(1, 'mediterian recipe', 'This is a vegitarian recipe', 'assets/images/Recipe2.jpg',
             [
                 new Ingredient('Cheese', 2), new Ingredient('tomatoes', 4)
             ])
@@ -25,5 +28,15 @@ export class RecipeService {
             }
         );
         return recipe;
+    }
+
+    addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe);
+        this.recipeAdded.next(this.recipes.slice());
+    }
+
+    updateRecipe(index: number, newRecipe: Recipe) {
+        this.recipes[index] = newRecipe;
+        this.recipeAdded.next(this.recipes.slice());
     }
 }
