@@ -39,4 +39,10 @@ export class RecipeService {
         this.recipes[index] = newRecipe;
         this.recipeAdded.next(this.recipes.slice());
     }
+
+    deleteRecipe(recipeId: number) {
+        const rindex = this.recipes.findIndex((r: Recipe) => (r.id === recipeId));
+        this.recipes.splice(rindex, 1);
+        this.recipeAdded.next(this.recipes.slice());
+    }
 }
