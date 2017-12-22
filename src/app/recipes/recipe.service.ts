@@ -1,22 +1,33 @@
+import { OnInit } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
-import 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import { DataStorageService } from '../shared/data-storage.service';
+import 'rxjs/Rx';
 
 export class RecipeService {
 
     recipeAdded = new Subject<Recipe[]>();
 
-    private recipes: Recipe[] = [
-        new Recipe(0, 'A test recipe', 'This is simply a test', 'assets/images/Recipe1.jpg'
-            , [
-                new Ingredient('Apples', 2), new Ingredient('pineapple', 1)
-            ]),
-        new Recipe(1, 'mediterian recipe', 'This is a vegitarian recipe', 'assets/images/Recipe2.jpg',
-            [
-                new Ingredient('Cheese', 2), new Ingredient('tomatoes', 4)
-            ])
-    ];
+    private recipes: Recipe[] = [];
+
+
+
+    // = [
+    //     new Recipe(0, 'A test recipe', 'This is simply a test', 'assets/images/Recipe1.jpg'
+    //         , [
+    //             new Ingredient('Apples', 2), new Ingredient('pineapple', 1)
+    //         ]),
+    //     new Recipe(1, 'mediterian recipe', 'This is a vegitarian recipe', 'assets/images/Recipe2.jpg',
+    //         [
+    //             new Ingredient('Cheese', 2), new Ingredient('tomatoes', 4)
+    //         ])
+    // ];
+
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.recipeAdded.next(this.recipes.slice());
+    }
 
     getRecipes() {
         return this.recipes.slice(); // By adding this slice we'll get the copy of the array rather than reference of the recipe array.
