@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -10,13 +11,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+  private router:Router) { }
 
   ngOnInit() {
   }
 
   onSubmit(ngForm: NgForm) {
     this.authService.signinUser(ngForm.value.email, ngForm.value.password);
+    // if(this.authService.isAuthenticated()){
+    //   this.router.navigate(['recipes']);
+    // }
   }
 
 }

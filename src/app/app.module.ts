@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,7 +47,7 @@ import { SigninComponent } from './auth/signin/signin.component';
     FormsModule,
     HttpModule
   ],
-  providers: [ShoppingListSerivice, RecipeService, DataStorageService, AuthService],
+  providers: [ShoppingListSerivice, RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

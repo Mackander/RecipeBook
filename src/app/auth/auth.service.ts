@@ -1,14 +1,25 @@
 import * as firebase from 'firebase'
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
+@Injectable()
 export class AuthService {
     token: string;
 
+    constructor(private router:Router){
+
+    }
+
     getToken() {
         firebase.auth().currentUser.getIdToken()
-        .then((token: string) => {
-            token = token;
-        });
+            .then((token: string) => {
+                token = token;
+            });
         return this.token;
+    }
+
+    isAuthenticated() {
+        return this.token != null;
     }
 
     signupUser(email: string, password: string) {
@@ -28,6 +39,7 @@ export class AuthService {
                     });
 
                 console.log(response)
+                this.router.navigate(['/']);
             })
             .catch(function (error) {
                 // Handle Errors here.
@@ -36,6 +48,18 @@ export class AuthService {
                 console.log(errorCode + ": " + errorMessage);
                 // ...
             });
+    }
+
+    signOut() {
+        firebase.auth().signOut().then(function () {
+            // Sign-out successful.
+            
+        }).catch(function (error) {
+            // An error happened.
+            console.log("Error occured while signing out - " + error)
+        });
+        this.token = null;
+        this.router.navigate(['signin']);
     }
 
 
