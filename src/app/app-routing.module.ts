@@ -7,6 +7,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 const appRoute: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -19,7 +21,9 @@ const appRoute: Routes = [
             { path: ':id/edit', component: RecipeEditComponent }
         ]
     },
-    { path: 'shopping-list', component: ShoppingListComponent }
+    { path: 'shopping-list', component: ShoppingListComponent },
+    { path: 'signup', component: SignupComponent },
+    { path: 'signin', component: SigninComponent }
 ];
 
 
