@@ -1,3 +1,4 @@
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthGuard } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
@@ -5,11 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from '../app/shared/header/header.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ShoppingListSerivice } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
 import { HttpModule } from '@angular/http';
@@ -23,11 +21,8 @@ import { RecipesModule } from './recipes/recipes.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     SignupComponent,
     SigninComponent
-    
   ],
   imports: [
     BrowserModule,
@@ -36,7 +31,8 @@ import { RecipesModule } from './recipes/recipes.module';
     HttpModule,
     RecipesModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ShoppingListModule
   ],
   providers: [ShoppingListSerivice, RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
