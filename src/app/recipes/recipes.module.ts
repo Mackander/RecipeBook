@@ -1,4 +1,4 @@
-import { DropdownDirective } from './../shared/dropdown.directive';
+import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
@@ -16,12 +16,12 @@ import { CommonModule } from '@angular/common';
         RecipeListComponent,
         RecipeEditComponent,
         RecipeDetailComponent,
-        RecipeItemComponent,
-        DropdownDirective
+        RecipeItemComponent
     ],
     imports:[
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RecipesRoutingModule
     ]
 })
 export class RecipesModule {

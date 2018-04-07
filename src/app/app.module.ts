@@ -1,9 +1,10 @@
+import { DropdownDirective } from './shared/dropdown.directive';
 import { AuthGuard } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from '../app/shared/header/header.component';
@@ -25,14 +26,16 @@ import { RecipesModule } from './recipes/recipes.module';
     ShoppingListComponent,
     ShoppingEditComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    RecipesModule
+    RecipesModule,
+    ReactiveFormsModule
   ],
   providers: [ShoppingListSerivice, RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
