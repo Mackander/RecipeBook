@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthGuard } from './auth/auth-guard.service';
@@ -12,8 +13,6 @@ import { ShoppingListSerivice } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
 import { HttpModule } from '@angular/http';
 import { DataStorageService } from './shared/data-storage.service';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
 import { RecipesModule } from './recipes/recipes.module';
 
 
@@ -21,8 +20,7 @@ import { RecipesModule } from './recipes/recipes.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SignupComponent,
-    SigninComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -32,7 +30,8 @@ import { RecipesModule } from './recipes/recipes.module';
     RecipesModule,
     ReactiveFormsModule,
     SharedModule,
-    ShoppingListModule
+    ShoppingListModule,
+    AuthModule
   ],
   providers: [ShoppingListSerivice, RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
