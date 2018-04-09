@@ -7,9 +7,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
 
 const recipesRoute : Routes = [
-    { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+    
     {
-        path: 'recipes', component: RecipesComponent,
+        path: '', component: RecipesComponent,
         children: [
             { path: '', component: RecipeStartComponent },
             { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] }, // ordering of routes is important!!

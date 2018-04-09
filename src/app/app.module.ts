@@ -14,12 +14,14 @@ import { RecipeService } from './recipes/recipe.service';
 import { HttpModule } from '@angular/http';
 import { DataStorageService } from './shared/data-storage.service';
 import { RecipesModule } from './recipes/recipes.module';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
     
   ],
   imports: [
