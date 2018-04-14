@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
 
 const recipesRoute : Routes = [
-    
+    //{ path: '', redirectTo: '/recipes', pathMatch: 'full' },
     {
         path: '', component: RecipesComponent,
         children: [
