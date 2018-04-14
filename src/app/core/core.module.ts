@@ -1,0 +1,11 @@
+import { AppRoutingModule } from './../app-routing.module';
+import { SharedModule } from './../shared/shared.module';
+import { HeaderComponent } from './../core/header/header.component';
+import { NgModule } from '@angular/core';
+
+@NgModule({
+    declarations:[HeaderComponent],
+    imports:[SharedModule,AppRoutingModule],
+    exports:[HeaderComponent,AppRoutingModule]
+})
+export class CoreModule { }
