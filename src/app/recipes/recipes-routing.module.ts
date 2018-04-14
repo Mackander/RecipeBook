@@ -6,8 +6,7 @@ import { RecipesComponent } from './recipes.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
 
-const recipesRoute : Routes = [
-    //{ path: '', redirectTo: '/recipes', pathMatch: 'full' },
+const recipesRoute: Routes = [
     {
         path: '', component: RecipesComponent,
         children: [
@@ -22,6 +21,7 @@ const recipesRoute : Routes = [
 
 @NgModule({
     imports: [RouterModule.forChild(recipesRoute)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [AuthGuard] //Adding it here as it is the only place where it is used in whole recipe app
 })
-export class RecipesRoutingModule {}
+export class RecipesRoutingModule { }
