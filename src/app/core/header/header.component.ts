@@ -1,6 +1,6 @@
 import { DataStorageService } from './../../shared/data-storage.service';
 import { AuthService } from './../../auth/auth.service';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component} from '@angular/core';
 import { Response } from '@angular/http';
 
 @Component({
@@ -25,4 +25,8 @@ export class HeaderComponent {
     onSignOut() {
         this.authService.signOut();
     }
+
+    isAuthenticated() {
+        return this.authService.isAuthenticated();
+      }
 }

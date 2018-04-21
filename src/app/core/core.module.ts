@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { AuthService } from './../auth/auth.service';
 import { DataStorageService } from './../shared/data-storage.service';
 import { RecipeService } from './../recipes/recipe.service';
@@ -6,7 +7,7 @@ import { AppRoutingModule } from './../app-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { HeaderComponent } from './../core/header/header.component';
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
     declarations: [HeaderComponent, HomeComponent],

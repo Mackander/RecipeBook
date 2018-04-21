@@ -43,7 +43,7 @@ export class RecipeEditComponent implements OnInit {
     const em = this.editMode;
     const sr = this.selectedRecipe;
 
-    const recipeIngredients = new FormArray([]);
+    let recipeIngredients = new FormArray([]);
 
     if (em && sr['ingredients']) {
       sr.ingredients.forEach((ingredient: Ingredient) => {
@@ -94,6 +94,10 @@ export class RecipeEditComponent implements OnInit {
   onCancel() {
     this.recipeForm.reset();
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  getControls() {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
   onDeleteIngredient(index: number) {
