@@ -25,21 +25,25 @@ export class DataStorageService {
 
         //we can tell httpClient what type of data are we getting back
         //So "get" can be generic type and we can specify what type of data we are expecting
-        return this.httpClient.get<Recipe[]>('https://ng-recipe-book-cee0c.firebaseio.com/recipes.json?auth=' + token)
-            .map(
-            (recipes) => {
-                recipes.forEach((recipe: Recipe) => {
-                    if (recipe['ingredients'] == null) {
-                        recipe['ingredients'] = [];
-                    }
-                });
-                return recipes;
+        return this.httpClient.get<Recipe[]>('https://ng-recipe-book-cee0c.firebaseio.com/recipes.json?auth=' + token,
+            {
+                observe: 'body',
+                responseType: 'json' //this is default option
             })
+            .map(
+                (recipes) => {
+                    recipes.forEach((recipe: Recipe) => {
+                        if (recipe['ingredients'] == null) {
+                            recipe['ingredients'] = [];
+                        }
+                    });
+                    return recipes;
+                })
             .subscribe(
-            (recipies: Recipe[]) => {
-                this.recipeService.setRecipes(recipies);
-            },
-            (error: Response) => 'Something is broken'
+                (recipies: Recipe[]) => {
+                    this.recipeService.setRecipes(recipies);
+                },
+                (error: Response) => 'Something is broken'
             );
     }
 }
