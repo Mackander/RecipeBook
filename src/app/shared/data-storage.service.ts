@@ -1,7 +1,8 @@
+import { Params } from '@angular/router';
 import { Recipe } from './../recipes/recipe.model';
 import { AuthService } from './../auth/auth.service';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams,HttpRequest } from '@angular/common/http';
 import { RecipeService } from '../recipes/recipe.service';
 //import { Recipe } from '../recipes/recipe.model';
 import * as firebase from 'firebase';
@@ -16,13 +17,19 @@ export class DataStorageService {
 
     storeRecipies() {
         const token = this.authService.getToken();
-        return this.httpClient.put('https://ng-recipe-book-cee0c.firebaseio.com/recipes.json',
-         this.recipeService.getRecipes(),
-         {
-             observe:'events'
-             ,params:new HttpParams().set('auth',token)
-         }
-        );
+        // return this.httpClient.put('https://ng-recipe-book-cee0c.firebaseio.com/recipes.json',
+        //  this.recipeService.getRecipes(),
+        //  {
+        //      observe:'events'
+        //      ,params:new HttpParams().set('auth',token)
+        //  }
+        // );
+        // Alternative way of creating request
+        const req = new HttpRequest('PUT','https://ng-recipe-book-cee0c.firebaseio.com/recipes.json'
+        ,this.recipeService.getRecipes()
+        ,{reportProgress:true, params: new HttpParams().set('auth',token)});
+
+        return this.httpClient.request(req);
     }
 
 
