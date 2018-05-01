@@ -16,7 +16,7 @@ export class DataStorageService {
 
 
     storeRecipies() {
-        const token = this.authService.getToken();
+        //const token = this.authService.getToken();
         // return this.httpClient.put('https://ng-recipe-book-cee0c.firebaseio.com/recipes.json',
         //  this.recipeService.getRecipes(),
         //  {
@@ -27,14 +27,13 @@ export class DataStorageService {
         // Alternative way of creating request
         const req = new HttpRequest('PUT','https://ng-recipe-book-cee0c.firebaseio.com/recipes.json'
         ,this.recipeService.getRecipes()
-        ,{reportProgress:true, params: new HttpParams().set('auth',token)});
-
+        ,{reportProgress:true});
         return this.httpClient.request(req);
     }
 
 
     getRecipiesData() {
-        const token = this.authService.getToken();
+        //const token = this.authService.getToken();
 
         //we can tell httpClient what type of data are we getting back
         //So "get" can be generic type and we can specify what type of data we are expecting
@@ -43,7 +42,7 @@ export class DataStorageService {
                 observe: 'body',
                 responseType: 'json' //this is default option
                 //, headers: new HttpHeaders() //This is new in http client lecture 294
-                ,params: new HttpParams().set('auth',token) //This is new in http client lecture 294
+                // ,params: new HttpParams().set('auth',token) //This is new in http client lecture 294
             })
             .map(
                 (recipes) => {
