@@ -1,5 +1,5 @@
 import { HttpEvent, HttpHandler, HttpRequest, HttpInterceptor } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/do'
 
 export class LoggingInterceptor implements HttpInterceptor {

@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { DataStorageService } from '../shared/data-storage.service';
 import 'rxjs/Rx';
 
